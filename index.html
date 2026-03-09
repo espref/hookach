@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hookach — подбор микса</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="logo-block">
+          <h1 class="logo">Hookach</h1>
+          <p class="subtitle">Подбор идеального микса для вашего стола</p>
+        </div>
+        <div class="table-input">
+          <label for="tableNumber">Номер стола</label>
+          <input id="tableNumber" type="text" placeholder="Например: 5" />
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="filters">
+          <h2>Подбор по фильтрам</h2>
+          <div class="filters-grid">
+            <div class="filter-block">
+              <h3>Вкусовые профили</h3>
+              <div id="profileFilters" class="tag-list"></div>
+            </div>
+            <div class="filter-block">
+              <h3>Настроение / оттенки</h3>
+              <div id="moodFilters" class="tag-list"></div>
+            </div>
+            <div class="filter-block">
+              <h3>Сезонность</h3>
+              <div id="seasonFilters" class="tag-list"></div>
+            </div>
+            <div class="filter-block">
+              <h3>Крепость (1–10)</h3>
+              <div class="range-row">
+                <input id="strengthMin" type="number" min="1" max="10" value="1" />
+                <span>—</span>
+                <input id="strengthMax" type="number" min="1" max="10" value="10" />
+              </div>
+              <p class="hint">
+                1–3 — легкие, 4–7 — средние, 8–10 — крепкие.
+              </p>
+            </div>
+            <div class="filter-block">
+              <h3>Сложность микса</h3>
+              <div id="complexityFilters" class="tag-list"></div>
+            </div>
+          </div>
+          <div class="filters-actions">
+            <button id="applyFilters" class="btn primary">Показать миксы</button>
+            <button id="resetFilters" class="btn ghost">Сбросить фильтры</button>
+            <button id="randomMix" class="btn accent">Случайный микс</button>
+          </div>
+        </section>
+
+        <section class="highlight">
+          <h2>Микс дня</h2>
+          <div id="mixOfDay" class="mix-of-day">Загрузка...</div>
+        </section>
+
+        <section class="results">
+          <h2>Подходящие миксы</h2>
+          <div id="mixList" class="mix-list empty-placeholder">
+            Выберите фильтры и нажмите «Показать миксы».
+          </div>
+        </section>
+
+        <section class="order-status" id="orderStatusSection" hidden>
+          <h2>Статус вашего заказа</h2>
+          <p id="orderStatusText">Заказ еще не создан.</p>
+        </section>
+      </main>
+
+      <!-- Модальное окно карточки микса -->
+      <div id="mixModal" class="modal hidden">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-content">
+          <button class="modal-close" data-close-modal>&times;</button>
+          <div id="mixModalBody"></div>
+        </div>
+      </div>
+
+      <!-- Модальное окно входа в админку -->
+      <div id="adminModal" class="modal hidden">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-content small">
+          <button class="modal-close" data-close-modal>&times;</button>
+          <h2>Вход для администратора</h2>
+          <div class="form-field">
+            <label for="adminLogin">Логин</label>
+            <input id="adminLogin" type="text" value="admin" />
+          </div>
+          <div class="form-field">
+            <label for="adminPassword">Пароль</label>
+            <input id="adminPassword" type="password" value="admin12345689" />
+          </div>
+          <button id="adminLoginBtn" class="btn primary full">Войти</button>
+          <p id="adminLoginError" class="error-text"></p>
+        </div>
+      </div>
+
+      <!-- Админ-панель -->
+      <div id="adminPanel" class="admin-panel hidden">
+        <header class="admin-header">
+          <h2>Админка — заказы</h2>
+          <button id="adminLogoutBtn" class="btn ghost small">Выйти</button>
+        </header>
+        <div id="adminOrders" class="admin-orders"></div>
+      </div>
+
+      <footer class="footer">
+        <span id="secretAdminTrigger" class="secret-trigger-text">Hookach &copy; 2026</span>
+        <span class="footer-spacer"></span>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
